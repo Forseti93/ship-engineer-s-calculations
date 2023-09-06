@@ -12,7 +12,7 @@ export default function Home() {
         </p> */}
 
         <div className={styles.grid}>
-          <a href="/bunkering" className={styles.card}>
+          <a href="/bunkering" className={styles.card + " card"}>
             <h3>Bunkering calculations &rarr;</h3>
             <p>To find MT, Corrected density</p>
           </a>
