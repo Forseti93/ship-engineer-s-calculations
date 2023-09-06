@@ -1,0 +1,27 @@
+Сделать ПВА положение по расчёту вес\обьём топлива, масла, воды.
+
+Проблемы
+I. Bunker calculations
+    input: sounding m3 + heel + trim + temperature + density + MT metric tones + capacity of tank 
+
+    Corrected density
+    Temperature Corrected Density = (Density of Fuel Oil @ 15⁰C) x [1- {(T-15) x 0.00064}]
+
+    Mass (kg ) = Volume (m^3 ) / Density ( Kg/m^3 )Mass ( in MT )
+    Mass ( in MT ) = Volume ( in m^3 ) / Density ( tonne/ m^3 )
+
+    1.Find volume of fuel oil by using sounding table in m^3
+    2.Calculate Corrected density at Particular Temperature. Unit of Density is Kg / M^3.
+    3.Calculate Mass by using formula mass = density * volume.
+    Note :- You will get this mass in kg. Divide it by 1000, you will get in Metric Tonne (MT )
+
+II. Потребление топлива
+III. Потребление топлива
+
+
+Требования
+1. Оффлайн приложение для телефонов
+2. ПВА сайт
+3. Закинуть в Гугл Плей
+4. Закинуть в Эппл Стор
+5. Закинуть в Майкрософт стор
