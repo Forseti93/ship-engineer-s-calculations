@@ -2,6 +2,15 @@
   all: unset;
 }
 
+table,
+thead,
+tbody,
+tr,
+td,
+th {
+  all: revert;
+}
+
 head,
 script {
   display: none;

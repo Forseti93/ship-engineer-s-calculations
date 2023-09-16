@@ -1,6 +1,7 @@
 {
-  "name": "Next.JS Progressive Web App",
-  "short_name": "Next PWA",
+  "name": "Ship exploitation calculator",
+  "short_name": "ER Calculator",
+  "description": "To calculate bunker, SFOC (specific fuel oil consumption), percentage of slip. For offline usage.",
   "theme_color": "#ffffff",
   "background_color": "#004740",
   "display": "fullscreen",

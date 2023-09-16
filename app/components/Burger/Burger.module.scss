@@ -1,0 +1,47 @@
+.burger {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: none;
+  gap: 10px;
+  transition: all 0.3s ease-out;
+  height: 3.5rem;
+  width: 4rem;
+
+  // #region span
+  span {
+    background-color: black;
+    border-radius: 3px;
+    height: 4px;
+    width: 4rem;
+    display: block;
+    transition: all 0.3s ease-out;
+  }
+
+  .firstSpanOpen {
+    transform: translateY(0.9rem) rotate(45deg);
+  }
+  // .firstSpanClosed {
+  //   transform: translateY(-1.125);
+  // }
+
+  .secondSpanOpen {
+    opacity: 0;
+  }
+  // .secondSpanClosed {
+  //   opacity: 1;
+  // }
+
+  .thirdSpanOpen {
+    transform: translateY(-0.85rem) rotate(-45deg);
+  }
+  // .thirdSpanClosed {
+  //   transform: translateY(0.25rem);
+  // }
+  // #endregion
+}
+
+.burgerOpen {
+  max-height: 4rem;
+}

@@ -1,0 +1,154 @@
+.infoTheme {
+  background-color: beige;
+  border-radius: 5px;
+  border: 1px solid black;
+}
+
+.infoTheme > a {
+  padding: 5px 10px;
+  display: block;
+}
+
+.infoTheme + .infoTheme {
+  margin-left: 10px;
+}
+.InfoThemeTopic {
+  background-color: rgb(252, 252, 166);
+  border-radius: 5px;
+  border: 1px solid black;
+  padding: 5px 10px;
+}
+.InfoThemeTopic + .InfoThemeTopic {
+  margin-left: 10px;
+}
+
+.addNewRow,
+.addNewColumn,
+.addNewRowFormBtn,
+.editTableBtn,
+.printTableBtn,
+.roundBorder,
+.aboveCell,
+.rightFromCell {
+  cursor: pointer;
+}
+.addNewRow:hover,
+.addNewColumn:hover,
+.addNewRowFormBtn:hover,
+.editTableBtn:hover,
+.printTableBtn:hover,
+.roundBorder:hover,
+.aboveCell:hover,
+.aboveCell:focus,
+.rightFromCell:hover,
+.rightFromCell:focus {
+  color: #0070f3;
+}
+
+.addNewColumn {
+  rotate: -90deg;
+  left: -80px;
+  top: 43px;
+}
+
+.rowPosition {
+  height: 25px;
+  width: 100px;
+}
+.addNewRowFormBtn {
+  border-color: #0070f3;
+  border-radius: 3px;
+}
+
+.editTableBtn {
+  margin-left: 15px;
+  text-decoration: underline;
+}
+
+.defaultTable {
+  width: 80%;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.columnHeader {
+  color: rgb(30, 30, 30);
+  font-weight: 700;
+}
+
+.printTableBtn {
+  text-decoration: underline;
+  margin-right: 15px;
+}
+
+.roundBorder {
+  border-radius: 1px solid grey;
+}
+
+.onlyLeftBorder {
+  border: hidden;
+  border-left: inherit;
+}
+.onlyBottomBorder {
+  border: hidden;
+  border-bottom: inherit;
+}
+.hiddenBorders {
+  border: hidden;
+}
+.hideRightBorder {
+  border-right: hidden;
+}
+
+.aboveCell {
+  padding: 0;
+  margin: 0;
+  position: absolute;
+  font-weight: 700;
+  border: 1px solid;
+  border-radius: 5px;
+  line-height: 18px;
+  height: 18px;
+  width: 18px;
+  top: -70%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.rightFromCell {
+  border: 2px solid;
+  border-radius: 50%;
+  line-height: 14px;
+  height: 18px;
+  width: 18px;
+  position: absolute;
+  font-weight: 700;
+  padding: 0;
+  top: 25%;
+  right: -15%;
+  transform: translateX(-50%);
+}
+
+.editColumn {
+  padding: 15px;
+  background-color: rgba(186, 215, 255, 0.8);
+}
+.editColumn form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.editColumn form * :not(:first-child) {
+  margin-top: 15px;
+}
+
+.editColumn form div:not(:last-child) {
+  align-self: self-start;
+  margin-right: 30px;
+  text-align: left;
+}
+
+.editColumn form div button {
+  align-self: flex-end;
+}

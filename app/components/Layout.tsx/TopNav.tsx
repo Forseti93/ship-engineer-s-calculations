@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "../../styles/Layout.module.scss";
+import Burger from "../Burger/Burger";
 
 const TopNav = () => {
   return (
@@ -12,11 +13,11 @@ const TopNav = () => {
           <a href="/about">About</a>
         </li>
         <li className={styles.nav_link}>
-          <button className={styles.burger}>
-            <a href="/bunkering">Bunkering</a>
+          <Burger>
+            {/* <a href="/bunkering">Bunkering</a>
             <a href="/bunkering">Fuel consumption</a>
-            <a href="/bunkering">Percentage of slip</a>
-          </button>
+            <a href="/bunkering">Percentage of slip</a> */}
+          </Burger>
         </li>
       </ul>
     </nav>
