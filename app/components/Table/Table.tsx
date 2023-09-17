@@ -1,77 +1,56 @@
-import React, { useMemo, useReducer, useState } from "react";
-import { ITable } from "./interfaces";
-import { CTable } from "./CTable";
-import H3 from "../H3";
+import React from "react";
 import Cell from "./Cell";
-import { twoObjectsSame } from "../usefulFunctions";
-import { table } from "console";
-// import tableReducer from "./reducer";
 
-const Table = (props: ITable) => {
-  // const [tableState, dispatch] = useReducer(tableReducer, {} as ITable);
-  /*TODO: 
-  +props came here
-  -props went to local storage (add rows)
-  -data from local storage is used to draw table
-  -if user change table from UI, it changes local storage  */
-  const returnThTags = (data: CTable) => {
-    return data.table.columnsHeaders.map((columnHeader: string, i: number) => {
-      return (
-        <th>
-          <Cell value={columnHeader} id={i} key={`ht_${i}`} />
-        </th>
-      );
+const Table = ({ columnsHeaders, rows }: ITable) => {
+  const thTags = (headers: ITable["columnsHeaders"]) =>
+    headers?.map((header) => {
+      return <th>{header}</th>;
     });
-  };
 
-  const returnTdTags = (table: CTable) => {
-    const tdTags = [];
-    for (let col = 1; col <= table.columnsCounter; col++) {
-      tdTags.push(
-        <td>
-          <Cell value={`${col}`} id={col} />
-        </td>
-      );
-    }
-    return tdTags;
-  };
-
-  const addTableToLocSto = (key: string, table: CTable) => {
-    if (!localStorage.getItem(key)) {
-      localStorage.setItem(key, JSON.stringify(table));
-    } else {
-      const dataInLocStor = localStorage.getItem(key);
-      const newData = table;
-      if (!twoObjectsSame(dataInLocStor, newData))
-        localStorage.setItem(key, JSON.stringify(table));
-    }
-  };
-
-  const calculateBasicTable = (table: CTable): JSX.Element => {
+  const trTdTags = (rows: ITable["rows"]): JSX.Element => {
     return (
-      <table>
-        <thead>
-          <tr>{returnThTags(table)}</tr>
-        </thead>
-        <tbody>
-          <tr>{returnTdTags(table)}</tr>
-        </tbody>
-      </table>
+      <>
+        {rows.map((row, rowNum) => {
+          return (
+            <tr id={`${rowNum + 1}`}>
+              {row.map((cell, collNum) => {
+                return <Cell id={`${rowNum + 1}${collNum + 1}`} value={cell} />;
+              })}
+            </tr>
+          );
+        })}
+      </>
     );
+
+    /* 
+      if all table data is in the one array [1,2,3,...,100500]:
+
+      const columnsCount = columnsHeaders?.length;
+      const cellsCount = cellsValues?.length;
+      const rowsCount = Math.ceil(cellsCount! / columnsCount!);
+
+      const rows: JSX.Element[] = [];
+        let counter = 0;
+        for (let row = 0; row < rowsCount; row++) {
+          const cells: JSX.Element[] = [];
+          for (let cell = 0; cell < columnsCount; cell++) {
+            cells.push(<td id={`${counter}`}>{cellsValues[counter]}</td>);
+            counter++;
+          }
+          rows.push(<tr>{cells}</tr>);
+        }
+        return rows; 
+        */
   };
 
-  let table: CTable = new CTable(props);
-
-  if (typeof window !== "undefined") {
-    const key = "bunkering_table";
-    addTableToLocSto(key, table);
-  }
-
-  if (props.isLoading) {
-    return <H3>Table is loading...</H3>;
-  } else {
-    return <>{calculateBasicTable(table)}</>;
-  }
+  return (
+    <table>
+      <thead>
+        <tr>{thTags(columnsHeaders)}</tr>
+      </thead>
+      <tbody>{trTdTags(rows)}</tbody>
+    </table>
+  );
 };
 
 export default Table;

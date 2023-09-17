@@ -1,13 +1,9 @@
-export interface ICell {
-  value: string | (() => void);
-  id: number;
-  // key: string;
-  // changeable: boolean;
-  // styles: string;
+interface ICell {
+  id: string;
+  value: number;
 }
 
-export interface ITable {
-  isLoading: boolean;
-  columnsHeaders: string[];
-  rows?: number[][];
+interface ITable {
+  columnsHeaders: string[] | number[];
+  rows: number[][];
 }
