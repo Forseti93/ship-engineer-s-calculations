@@ -1,48 +1,36 @@
-export const ACTION = {
-  NEW_VALUE: "newValue",
-};
+import { ICellId, ITable } from "./interfaces";
 
-export const tableReducer = (state: any, action: any) => {
-  switch (action.type) {
-    case ACTION.NEW_VALUE:
-      return { ...state, count: state.count + 1 };
-
-    default:
-      throw new Error(`see tableReducer. wrong action type: "${action.type}"`);
-  }
-};
-
-/* function App() {
-  const [state, dispatch] = useReducer(tableReducer, {
-    count: 0,
-    userInput: "",
-    color: false,
-  });
-
-  return (
-    <main className="App" style={{ color: state.color ? "#FFF" : "#FFF952" }}>
-      <input
-        type="text"
-        value={state.userInput}
-        onChange={(e) =>
-          dispatch({ type: ACTION.NEW_USER_INPUT, payload: e.target.value })
-        }
-      />
-      <br />
-      <br />
-      <p>{state.count}</p>
-      <section>
-        <button onClick={() => dispatch({ type: ACTION.DECREMENT })}>-</button>
-        <button onClick={() => dispatch({ type: ACTION.INCREMENT })}>+</button>
-        <button onClick={() => dispatch({ type: ACTION.TG_COLOR })}>
-          Color
-        </button>
-      </section>
-      <br />
-      <br />
-      <p>{state.userInput}</p>
-    </main>
-  );
+// An enum with all the types of actions to use in our reducer
+enum ACTIONS {
+  CHANGE_VALUE = "change_value",
 }
 
-export default App; */
+// An interface for our actions
+interface IACTIONS {
+  type: ACTIONS;
+  payload: { cellId: ICellId; value: number };
+}
+
+export const tableReducer = (state: ITable, action: IACTIONS) => {
+  switch (action.type) {
+    case "change_value":
+      const newRows = state!.rows;
+      const rowId = action.payload.cellId.row;
+      const colId = action.payload.cellId.col;
+      const newValue = action.payload.value;
+
+      newRows[rowId][colId] = newValue;
+
+      return {
+        ...state!,
+        rows: newRows,
+      };
+    default:
+      console.log(
+        new Error(`see tableReducer. wrong action type: "${action.type}"`)
+      );
+
+      return state;
+    // throw new Error(`see tableReducer. wrong action type: "${action.type}"`);
+  }
+};

@@ -1,20 +1,35 @@
-import React from "react";
+import React, { useContext } from "react";
 import Cell from "./Cell";
+import { BunkeringContext } from "./BunkeringContext";
+import H3 from "../H3";
+import { ITable } from "./interfaces";
 
-const Table = ({ columnsHeaders, rows }: ITable) => {
-  const thTags = (headers: ITable["columnsHeaders"]) =>
-    headers?.map((header) => {
-      return <th>{header}</th>;
+const Table = () => {
+  const context = useContext(BunkeringContext);
+
+  const thTags = (headers?: ITable["columnsHeaders"]) =>
+    headers?.map((header, headerId) => {
+      return <th key={headerId}>{header}</th>;
     });
 
-  const trTdTags = (rows: ITable["rows"]): JSX.Element => {
+  const trTdTags = (rows?: ITable["rows"]): JSX.Element => {
     return (
       <>
-        {rows.map((row, rowNum) => {
+        {rows?.map((row, rowNum) => {
           return (
-            <tr id={`${rowNum + 1}`}>
+            <tr id={`${rowNum}`} key={rowNum}>
               {row.map((cell, collNum) => {
-                return <Cell id={`${rowNum + 1}${collNum + 1}`} value={cell} />;
+                if (collNum === 0) {
+                  return <td key={`${rowNum};${collNum}`}>{rowNum + 1}</td>;
+                } else {
+                  return (
+                    <Cell
+                      id={`${rowNum};${collNum}`}
+                      value={cell}
+                      key={`${rowNum};${collNum}`}
+                    />
+                  );
+                }
               })}
             </tr>
           );
@@ -43,13 +58,15 @@ const Table = ({ columnsHeaders, rows }: ITable) => {
         */
   };
 
-  return (
+  return context?.state !== undefined ? (
     <table>
       <thead>
-        <tr>{thTags(columnsHeaders)}</tr>
+        <tr>{thTags(context?.state.columnsHeaders)}</tr>
       </thead>
-      <tbody>{trTdTags(rows)}</tbody>
+      <tbody>{trTdTags(context?.state.rows)}</tbody>
     </table>
+  ) : (
+    <H3>Table is empty</H3>
   );
 };
 

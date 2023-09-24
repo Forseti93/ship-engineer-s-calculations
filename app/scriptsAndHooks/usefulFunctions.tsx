@@ -8,3 +8,18 @@ export const localStorageHas = (key: string): boolean =>
 
 export const getLocalStorageAndParse = (key: string): any =>
   JSON.parse(localStorage.getItem(key)!);
+
+export const alertIfNaN = (e: any) => {
+  console.dir(e);
+  let value;
+  // if (e.key) {
+  //   value = e.key;
+  // } else {
+  //   value = e.nativeEvent.data;
+  // }
+  e.key ? (value = e.key) : (value = e.nativeEvent.data);
+  if (isNaN(value)) {
+    e.preventDefault();
+    window.alert("Only numbers allowed");
+  }
+};

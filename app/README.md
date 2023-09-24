@@ -1,5 +1,14 @@
-- UI takes data from DB.json
-  TODO: check how mongo can output data from it's DB. make same with db.json
+TODO:
+
+- Cell component doesn't display isFocused state properly.
+- I've tried to catch isFocused state with:
+  useRef for clicked cell
+  useClickOutside custom hook
+  and Cell's state
+
+INFO:
+
+- The Table component renders from useContext (passed from Bunkering page). State managed via useReducer hook in table component.
 
 ---
 
