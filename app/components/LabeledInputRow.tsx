@@ -1,5 +1,4 @@
 import React from "react";
-import Superscript from "./Superscript";
 
 interface ILabeledInputRow {
   labelClassName: string;

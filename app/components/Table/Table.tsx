@@ -1,8 +1,9 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import Cell from "./Cell";
-import { BunkeringContext } from "./BunkeringContext";
+import { BunkeringContext } from "../../context/BunkeringContext";
 import H3 from "../H3";
-import { ITable } from "./interfaces";
+import { ICellId, ITable } from "./interfaces";
+import { EACTIONS } from "./reducerTable";
 
 const Table = () => {
   const context = useContext(BunkeringContext);
@@ -11,8 +12,22 @@ const Table = () => {
     headers?.map((header, headerId) => {
       return <th key={headerId}>{header}</th>;
     });
-
+  // TODO: make a component
   const trTdTags = (rows?: ITable["rows"]): JSX.Element => {
+    const [activeId, setActiveId] = useState<null | string>(null);
+
+    const handleCellClick = (id: string) => {
+      console.log(id);
+      setActiveId(id);
+    };
+
+    const handleCellChange = (value: number, cellId: ICellId) => {
+      console.log("val: ", value, "cell: ", cellId);
+      context?.dispatch({
+        type: EACTIONS.CHANGE_VALUE,
+        payload: { cellId, value },
+      });
+    };
     return (
       <>
         {rows?.map((row, rowNum) => {
@@ -24,6 +39,13 @@ const Table = () => {
                 } else {
                   return (
                     <Cell
+                      isActive={
+                        `${rowNum};${collNum}` === activeId ? true : false
+                      }
+                      onClick={() => handleCellClick(`${rowNum};${collNum}`)}
+                      onChange={(value) =>
+                        handleCellChange(value, { row: rowNum, col: collNum })
+                      }
                       id={`${rowNum};${collNum}`}
                       value={cell}
                       key={`${rowNum};${collNum}`}
@@ -36,26 +58,6 @@ const Table = () => {
         })}
       </>
     );
-
-    /* 
-      if all table data is in the one array [1,2,3,...,100500]:
-
-      const columnsCount = columnsHeaders?.length;
-      const cellsCount = cellsValues?.length;
-      const rowsCount = Math.ceil(cellsCount! / columnsCount!);
-
-      const rows: JSX.Element[] = [];
-        let counter = 0;
-        for (let row = 0; row < rowsCount; row++) {
-          const cells: JSX.Element[] = [];
-          for (let cell = 0; cell < columnsCount; cell++) {
-            cells.push(<td id={`${counter}`}>{cellsValues[counter]}</td>);
-            counter++;
-          }
-          rows.push(<tr>{cells}</tr>);
-        }
-        return rows; 
-        */
   };
 
   return context?.state !== undefined ? (

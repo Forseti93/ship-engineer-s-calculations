@@ -1,11 +1,12 @@
+"use client";
 import React, { useEffect, useReducer } from "react";
 import styles from "../styles/Bunkering.module.scss";
 import Table from "../components/Table/Table";
-import { tableReducer } from "../components/Table/reducer";
-import { BunkeringContext } from "../components/Table/BunkeringContext";
+import { EACTIONS, tableReducer } from "../components/Table/reducerTable";
+import { BunkeringContext } from "../context/BunkeringContext";
 import { ITable } from "../components/Table/interfaces";
 
-const locStorTableKey = "bunkering_table";
+export const locStorTableKey = "bunkering_table";
 
 const templateState: ITable = {
   columnsHeaders: [
@@ -21,7 +22,7 @@ const templateState: ITable = {
   ],
   rows: [
     [1, 1, 2, 3, 4, 5, 6, 7, 8],
-    [2, 0, 0, 0, 0, 0, 0, 0, 0],
+    [2, "1 PS", "MDO", 500, 30, 980, 20, 976.86, 29.31],
     [3, 0, 0, 0, 0, 0, 0, 0, 0],
     [4, 0, 0, 0, 0, 0, 0, 0, 0],
     [5, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -34,7 +35,7 @@ const templateState: ITable = {
   ],
 };
 
-const addStateToLocalStorage = (state: any, key: any) => {
+export const addStateToLocalStorage = (state: any, key: any) => {
   if (typeof window == "undefined") return;
 
   const stringified = JSON.stringify(state);
@@ -64,19 +65,11 @@ const initialState = (): ITable => {
 };
 
 const Bunkering = () => {
-  const [state, dispatch] = useReducer(tableReducer, initialState());
+  const [state, dispatch] = useReducer(tableReducer, templateState);
 
-  // if state changed - update local storage
   useEffect(() => {
-    if (typeof window == "undefined") return;
-    addStateToLocalStorage(state, locStorTableKey);
-  }, [state]);
-
-  // TODO: + add state to localStorage.
-  // + take initialState or state from local storage.
-  // add dispatch to the cell. cell clicked, state changed.
-  //    see Cell component, function which takes cell row and id works fine
-  //    edit reducer to update cell value -> https://github.com/gitdagray/usereducer_tut/blob/main/src/App.js
+    dispatch({ type: EACTIONS.INITIALIZING_STATE, payload: initialState() });
+  }, []);
 
   return (
     <BunkeringContext.Provider value={{ state, dispatch }}>

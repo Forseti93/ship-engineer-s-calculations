@@ -1,8 +1,14 @@
+TODO:
+- add an additional row, last column
+    - should display total MT value
+    - it can be implemented as a separate div with text and value for "total fuel quantity"
+- 2nd col "Tank name" should take string
+- 3rd col "Grade" should take string
+
+
 Problems:
 https://www.marineinsight.com/guidelines/3-important-calculations-every-marine-engineer-must-know/
-I. Bunker calculations https://youtu.be/ND_BHJZ38Sc?t=263
-    input: sounding m3 + heel + trim + temperature + OK_density + MT metric tones + capacity of tank 
-
++ I. Bunker calculations https://youtu.be/ND_BHJZ38Sc?t=263
     Corrected density
     Temperature Corrected Density = (Density of Fuel Oil @ 15⁰C) x [1- {(T-15) x 0.00064}]
 
@@ -18,7 +24,7 @@ info:
     https://web.dev/learn/pwa/web-app-manifest/
 
 2, if you have problems with a android virtual emulation: 
-    TODO: activate port forwarding: chrome://inspect#devices
+    activate port forwarding: chrome://inspect#devices
     video https://youtu.be/1VVKhnHNBeQ?t=223
     10.0.2.2:3000 - to access to th home page which is hosted on PC's localhost 
 	guide for HAXM on Windows - https://github.com/intel/haxm/wiki/Installation-Instructions-on-Windows#user-content-Installing_Standalone_Intel_HAXM_on_Windows
@@ -30,3 +36,10 @@ info:
 - Закинуть в Гугл Плей как ПВА
 - Закинуть в Эппл Стор *если возможно
 - Закинуть в Майкрософт стор *если возможно
+
+DONE:
++ add a formula to a column. reducer handle calculations during dispatch()
+    formula should work same as in excel, make as universal function
+    + be a function that take reference values, make actions with them,
+    +/- handle incorrect / strange input values, depending on attributes,
+    + update state (useReducer), cell with a formula should display a result of the function above.
