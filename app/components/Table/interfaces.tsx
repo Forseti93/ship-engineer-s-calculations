@@ -5,7 +5,7 @@ export interface ICellId {
 
 export interface ICell {
   id: string;
-  value: number;
+  value: number | string;
   isActive: boolean;
   onClick: () => void;
   onChange: (value: number) => void;
@@ -13,5 +13,5 @@ export interface ICell {
 
 export interface ITable {
   columnsHeaders: string[] | number[];
-  rows: number[][];
+  rows: (number | string)[][];
 }

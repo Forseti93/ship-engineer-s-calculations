@@ -5,7 +5,6 @@ TODO:
 - 2nd col "Tank name" should take string
 - 3rd col "Grade" should take string
 
-
 Problems:
 https://www.marineinsight.com/guidelines/3-important-calculations-every-marine-engineer-must-know/
 + I. Bunker calculations https://youtu.be/ND_BHJZ38Sc?t=263

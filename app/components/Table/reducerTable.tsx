@@ -22,10 +22,10 @@ export type TActions = IActionChangeValue | IActionInitializingState;
 export const tableReducer = (state: ITable, action: TActions) => {
   switch (action.type) {
     case "change_value":
-      const newRows = state.rows;
-      const rowId = action.payload.cellId.row;
-      const colId = action.payload.cellId.col;
-      const newValue = action.payload.value;
+      const newRows: any = state.rows;
+      const rowId: number = action.payload.cellId.row;
+      const colId: number = action.payload.cellId.col;
+      const newValue: string | number = action.payload.value;
 
       // new cell's value added (input onChange)
       newRows[rowId][colId] = newValue;
